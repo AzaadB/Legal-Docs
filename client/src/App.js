@@ -80,7 +80,8 @@ function App() {
           First request may take a few seconds
         </p>
         <br />
-        <p style={{ marginTop: 20, fontSize: 12, color: '#aaa' }}>
+        <br />
+        <p style={{ marginTop: 20, fontSize: 12, color: '#888' }}>
           Built by Azaad • LegalDocs App
         </p>
       </div>
