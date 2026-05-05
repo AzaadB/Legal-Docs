@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import API_URL from './config'
 
 function App() {
   const [docType, setDocType] = useState('demand')
@@ -8,14 +9,14 @@ function App() {
   const [details, setDetails] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // ...
+
   const generateDoc = async () => {
     setLoading(true)
 
-    const res = await fetch('http://localhost:5000/generate', {
+    const res = await fetch(`${API_URL}/generate`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ docType, name, recipient, details }),
     })
 
