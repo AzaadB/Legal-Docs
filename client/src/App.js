@@ -6,8 +6,11 @@ function App() {
   const [name, setName] = useState('')
   const [recipient, setRecipient] = useState('')
   const [details, setDetails] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const generateDoc = async () => {
+    setLoading(true)
+
     const res = await fetch('http://localhost:5000/generate', {
       method: 'POST',
       headers: {
@@ -23,12 +26,22 @@ function App() {
     a.href = url
     a.download = 'document.docx'
     a.click()
+
+    setLoading(false)
   }
+
+  ;<button onClick={generateDoc}>
+    {loading ? 'Generating...' : 'Generate Document'}
+  </button>
 
   return (
     <div className='app'>
       <div className='card'>
         <h1>LegalDocs</h1>
+
+        <p style={{ color: '#666', marginBottom: '15px' }}>
+          Generate professional legal documents instantly
+        </p>
 
         <select onChange={(e) => setDocType(e.target.value)}>
           <option value='demand'>Letter of Demand</option>
