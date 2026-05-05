@@ -79,10 +79,11 @@ function App() {
         <p style={{ fontSize: 12, color: '#888' }}>
           First request may take a few seconds
         </p>
+        <br />
+        <p style={{ marginTop: 20, fontSize: 12, color: '#aaa' }}>
+          Built by Azaad • LegalDocs App
+        </p>
       </div>
-      <p style={{ marginTop: 20, fontSize: 12, color: '#aaa' }}>
-        Built by Azaad • LegalDocs App
-      </p>
     </div>
   )
 }
