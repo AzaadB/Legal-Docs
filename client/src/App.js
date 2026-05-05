@@ -12,25 +12,37 @@ function App() {
   // ...
 
   const generateDoc = async () => {
+    if (!name || !recipient || !details) {
+      alert('Please fill in all fields')
+      return
+    }
+
     setLoading(true)
 
-    const res = await fetch(`${API_URL}/generate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ docType, name, recipient, details }),
-    })
+    try {
+      const res = await fetch(`${API_URL}/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ docType, name, recipient, details }),
+      })
 
-    const blob = await res.blob()
-    const url = window.URL.createObjectURL(blob)
+      if (!res.ok) throw new Error('Server error')
 
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'document.docx'
-    a.click()
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'document.docx'
+      a.click()
+    } catch (err) {
+      alert('Something went wrong. Try again.')
+    }
 
     setLoading(false)
   }
-
   ;<button onClick={generateDoc}>
     {loading ? 'Generating...' : 'Generate Document'}
   </button>
@@ -64,7 +76,13 @@ function App() {
         />
 
         <button onClick={generateDoc}>Generate Document</button>
+        <p style={{ fontSize: 12, color: '#888' }}>
+          First request may take a few seconds
+        </p>
       </div>
+      <p style={{ marginTop: 20, fontSize: 12, color: '#aaa' }}>
+        Built by Azaad • LegalDocs App
+      </p>
     </div>
   )
 }
