@@ -52,9 +52,7 @@ function App() {
       <div className='card'>
         <h1>LegalDocs</h1>
 
-        <p style={{ color: '#666', marginBottom: '15px' }}>
-          Generate professional legal documents instantly
-        </p>
+        <p>Generate professional legal documents instantly</p>
 
         <select onChange={(e) => setDocType(e.target.value)}>
           <option value='demand'>Letter of Demand</option>
@@ -62,18 +60,29 @@ function App() {
           <option value='motion'>Notice of Motion</option>
         </select>
 
-        <input
-          placeholder='Your Name'
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          placeholder='Recipient'
-          onChange={(e) => setRecipient(e.target.value)}
-        />
-        <textarea
-          placeholder='Details'
-          onChange={(e) => setDetails(e.target.value)}
-        />
+        <div className='row'>
+          <label>From:</label>
+          <input
+            placeholder='Enter your full name'
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        <div className='row'>
+          <label>TO:</label>
+          <input
+            placeholder='Who is this addressed to?'
+            onChange={(e) => setRecipient(e.target.value)}
+          />
+        </div>
+
+        <div className='row'>
+          <label>Details:</label>
+          <textarea
+            placeholder='Enter the details of the matter'
+            onChange={(e) => setDetails(e.target.value)}
+          />
+        </div>
 
         <button onClick={generateDoc}>Generate Document</button>
         <p style={{ fontSize: 12, color: '#888' }}>
@@ -82,7 +91,7 @@ function App() {
         <br />
         <br />
         <p style={{ marginTop: 20, fontSize: 12, color: '#888' }}>
-          Built by Azaad • LegalDocs App
+          Built by Azaad • Legal-Docs
         </p>
       </div>
     </div>
